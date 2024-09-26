@@ -1,9 +1,9 @@
-name: Deploy React App to GitHub Pages
+name: Deploy React App
 
 on:
   push:
     branches:
-      - main  # Deploy when the main branch is updated
+      - main
 
 jobs:
   build:
@@ -16,16 +16,16 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '20.x'  # Match your version
+          node-version: '20.x'  # Specify the Node.js version you're using
 
       - name: Install dependencies
-        run: npm install  # This step uses npm, not yarn
+        run: npm install  # This installs dependencies and should use the package-lock.json
 
       - name: Build the project
-        run: npm run build  # Run the build command
+        run: npm run build  # Run your build script
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist  # Path to the folder containing the built website
+          publish_dir: ./dist  # Path to your build folder
